@@ -9,19 +9,18 @@ function TabIcon({ focused, icon, title }: any) {
     return (
       <ImageBackground
         source={images.highlight}
-        className="flex flex-row w-full flex-1 min-w-[112px] min-h-14 mt-4 justify-center items-center rounded-full overflow-hidden"
+        className="flex flex-row w-full flex-1 min-w-[112px] min-h-14 mt-4 justify-center items-center rounded-sm overflow-hidden"
+        imageStyle={{ opacity: 0.1 }}
       >
-        <Image source={icon} tintColor="#151312" className="size-5" />
-        <Text className="text-secondary text-base font-semibold ml-2">
-          {title}
-        </Text>
+        <Image source={icon} tintColor="#E50914" className="size-5" />
+        <Text className="text-accent text-base font-medium ml-2">{title}</Text>
       </ImageBackground>
     );
   }
 
   return (
-    <View className="size-full justify-center items-center mt-4 rounded-full">
-      <Image source={icon} tintColor="#A8B5DB" className="size-5" />
+    <View className="size-full justify-center items-center mt-4 rounded-sm">
+      <Image source={icon} tintColor="#B3B3B3" className="size-5" />
     </View>
   );
 }
@@ -38,15 +37,15 @@ export default function TabsLayout() {
           alignItems: "center",
         },
         tabBarStyle: {
-          backgroundColor: "#0F0D23",
-          borderRadius: 50,
+          backgroundColor: "#181818",
           marginHorizontal: 20,
           marginBottom: 36,
           height: 52,
           position: "absolute",
           overflow: "hidden",
           borderWidth: 1,
-          borderColor: "#0F0D23",
+          borderColor: "#232323",
+          borderRadius: 4,
         },
       }}
     >
@@ -75,10 +74,10 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="save"
         options={{
-          title: "Save",
+          title: "My List",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon={icons.save} title="Save" />
+            <TabIcon focused={focused} icon={icons.save} title="My List" />
           ),
         }}
       />

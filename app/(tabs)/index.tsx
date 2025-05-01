@@ -38,7 +38,7 @@ const Index = () => {
     <View className="flex-1 bg-primary">
       <Image
         source={images.bg}
-        className="absolute w-full z-0"
+        className="absolute w-full z-0 opacity-30"
         resizeMode="cover"
       />
 
@@ -47,16 +47,22 @@ const Index = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ minHeight: "100%", paddingBottom: 10 }}
       >
-        <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto" />
+        <Image
+          source={icons.logo}
+          className="w-12 h-10 mt-20 mb-5 mx-auto"
+          tintColor="#E50914"
+        />
 
         {moviesLoading || trendingLoading ? (
           <ActivityIndicator
             size="large"
-            color="#0000ff"
+            color="#E50914"
             className="mt-10 self-center"
           />
         ) : moviesError || trendingError ? (
-          <Text>Error: {moviesError?.message || trendingError?.message}</Text>
+          <Text className="text-accent px-5 my-3">
+            Error: {moviesError?.message || trendingError?.message}
+          </Text>
         ) : (
           <View className="flex-1 mt-5">
             <SearchBar
@@ -68,8 +74,8 @@ const Index = () => {
 
             {trendingMovies && (
               <View className="mt-10">
-                <Text className="text-lg text-white font-bold mb-3">
-                  Trending Movies
+                <Text className="text-2xl text-light-100 font-bold mb-3">
+                  Trending Now
                 </Text>
                 <FlatList
                   horizontal
@@ -89,8 +95,8 @@ const Index = () => {
             )}
 
             <>
-              <Text className="text-lg text-white font-bold mt-5 mb-3">
-                Latest Movies
+              <Text className="text-2xl text-light-100 font-bold mt-5 mb-3">
+                Popular on MovieApp
               </Text>
 
               <FlatList

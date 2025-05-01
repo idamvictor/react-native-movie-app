@@ -5,18 +5,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#030014",
-        secondary: "#151312",
+        primary: "#141414", // Netflix dark background
+        secondary: "#181818", // Netflix card background
         light: {
-          100: "#D6C7FF",
-          200: "#A8B5DB",
-          300: "#9CA4AB",
+          100: "#FFFFFF", // Pure white for primary text
+          200: "#E5E5E5", // Light gray for secondary text
+          300: "#B3B3B3", // Netflix muted text
         },
         dark: {
-          100: "#221F3D",
-          200: "#0F0D23",
+          100: "#232323", // Slightly lighter dark for cards
+          200: "#191919", // Dark overlay
         },
-        accent: "#AB8BFF",
+        accent: "#E50914", // Netflix red
       },
     },
   },

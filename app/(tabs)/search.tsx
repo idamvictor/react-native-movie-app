@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { View, Text, ActivityIndicator, FlatList, Image } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { images } from "@/constants/images";
 import { icons } from "@/constants/icons";
@@ -26,13 +27,10 @@ const Search = () => {
     setSearchQuery(text);
   };
 
-  // Debounced search effect
   useEffect(() => {
     const timeoutId = setTimeout(async () => {
       if (searchQuery.trim()) {
         await loadMovies();
-
-        // Call updateSearchCount only if there are results
         if (movies?.length! > 0 && movies?.[0]) {
           await updateSearchCount(searchQuery, movies[0]);
         }
@@ -46,10 +44,9 @@ const Search = () => {
 
   return (
     <View className="flex-1 bg-primary">
-      <Image
-        source={images.bg}
-        className="flex-1 absolute w-full z-0"
-        resizeMode="cover"
+      <LinearGradient
+        colors={["rgba(20,20,20,0.9)", "#141414"]}
+        className="absolute inset-0"
       />
 
       <FlatList
@@ -67,12 +64,16 @@ const Search = () => {
         ListHeaderComponent={
           <>
             <View className="w-full flex-row justify-center mt-20 items-center">
-              <Image source={icons.logo} className="w-12 h-10" />
+              <Image
+                source={icons.logo}
+                className="w-12 h-10"
+                tintColor="#E50914"
+              />
             </View>
 
             <View className="my-5">
               <SearchBar
-                placeholder="Search for a movie"
+                placeholder="Search movies & TV shows"
                 value={searchQuery}
                 onChangeText={handleSearch}
               />
@@ -81,13 +82,13 @@ const Search = () => {
             {loading && (
               <ActivityIndicator
                 size="large"
-                color="#0000ff"
+                color="#E50914"
                 className="my-3"
               />
             )}
 
             {error && (
-              <Text className="text-red-500 px-5 my-3">
+              <Text className="text-accent px-5 my-3">
                 Error: {error.message}
               </Text>
             )}
@@ -96,9 +97,8 @@ const Search = () => {
               !error &&
               searchQuery.trim() &&
               movies?.length! > 0 && (
-                <Text className="text-xl text-white font-bold">
-                  Search Results for{" "}
-                  <Text className="text-accent">{searchQuery}</Text>
+                <Text className="text-xl text-light-100 font-semibold">
+                  Results for "{searchQuery}"
                 </Text>
               )}
           </>
@@ -106,10 +106,10 @@ const Search = () => {
         ListEmptyComponent={
           !loading && !error ? (
             <View className="mt-10 px-5">
-              <Text className="text-center text-gray-500">
+              <Text className="text-center text-light-300 text-lg">
                 {searchQuery.trim()
-                  ? "No movies found"
-                  : "Start typing to search for movies"}
+                  ? "No results found"
+                  : "Search for your favorite movies & TV shows"}
               </Text>
             </View>
           ) : null
